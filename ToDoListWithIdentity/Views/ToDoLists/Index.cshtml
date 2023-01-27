@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ToDo>
+    <div class="row justify-content-center">
+        <div class="card-body col-10 ">
+            <!-- Breadcrumb -->
+            <nav class="d-none d-md-block" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="#">ToDoList</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">All todo</li>
+                </ol>
+            </nav>
+            <!-- End Breadcrumb -->
+
+            <div class="mb-3 mb-md-4 d-flex justify-content-between">
+                <div class="h3 mb-0">TODO</div>
+                <div>
+                    <a asp-action="Create" class="btn btn-primary" >Add New</a>
+                </div>
+            </div>
+
+
+            <!-- Users -->
+            @if (!Model.Any())
+            {
+                <div class="alert alert-warning" role="alert">
+                    No todo fouended!
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive-xl">
+                    <table class="table text-nowrap mb-0">
+                        <thead>
+                            <tr>
+                                <th class="font-weight-semi-bold border-top-0 py-2">Title</th>
+                                <th class="font-weight-semi-bold border-top-0 py-2">Description</th>
+                                <th class="font-weight-semi-bold border-top-0 py-2">Status</th>
+                                <th class="font-weight-semi-bold border-top-0 py-2">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <partial name="_ToDoRow" model="item" />
+                            }
+
+                        </tbody>
+                    </table>
+                    <div class="card-footer d-block d-md-flex align-items-center d-print-none">
+                        <div class="d-flex mb-2 mb-md-0">Showing 1 to 8 of 24 Entries</div>
+
+                        <nav class="d-flex ml-md-auto d-print-none" aria-label="Pagination"><ul class="pagination justify-content-end font-weight-semi-bold mb-0">				<li class="page-item">				<a id="datatablePaginationPrev" class="page-link" href="#!" aria-label="Previous"><i class="gd-angle-left icon-text icon-text-xs d-inline-block"></i></a>				</li><li class="page-item d-none d-md-block"><a id="datatablePaginationPage0" class="page-link active" href="#!" data-dt-page-to="0">1</a></li><li class="page-item d-none d-md-block"><a id="datatablePagination1" class="page-link" href="#!" data-dt-page-to="1">2</a></li><li class="page-item d-none d-md-block"><a id="datatablePagination2" class="page-link" href="#!" data-dt-page-to="2">3</a></li><li class="page-item">				<a id="datatablePaginationNext" class="page-link" href="#!" aria-label="Next"><i class="gd-angle-right icon-text icon-text-xs d-inline-block"></i></a>				</li>				</ul></nav>
+                    </div>
+                </div>
+            }
+
+        </div>
+
+    </div>

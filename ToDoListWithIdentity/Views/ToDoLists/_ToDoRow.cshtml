@@ -1,0 +1,31 @@
+﻿@model ToDo
+
+<tr>
+    <td class="align-middle py-3">
+        <div class="d-flex align-items-center">
+            @Model.Title
+        </div>
+    </td>
+    <td class="py-3">@(Model.Description.Length > 20 ? $"{Model.Description.Substring(18)}..." : Model.Description)</td>
+    <td class="py-3">
+        <div class="dropdown">
+            <button class="btn @Model.InProgress ? badge-warning ? @Model.IsCompleted ? badge-success : badge-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                @(Model.InProgress ? "in progress" : @Model.IsCompleted ? "completed" : "not started")
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item  @Model.InProgress ? d-none" href="#">In Progress</a>
+                <a class="dropdown-item bg-success @Model.IsCompleted ? d-none" href="#">Completeda>
+</div>
+        </div>
+    </td>
+    <td class="py-3">
+        <div class="position-relative">
+            <a class="link-dark d-inline-block"  asp-action="Edit" asp-route-id="@Model.Id">
+                <i class="gd-pencil icon-text"></i>
+            </a>
+            <a class="link-dark d-inline-block" href="#">
+                <i class="gd-trash icon-text"></i>
+            </a>
+        </div>
+    </td>
+</tr>
